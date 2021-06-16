@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.cewitte.domain.User;
+import com.github.cewitte.dto.UserDTO;
 import com.github.cewitte.repository.UserRepository;
 import com.github.cewitte.services.exception.ObjectNotFoundException;
 
@@ -29,11 +30,15 @@ public class UserService {
 			throw new ObjectNotFoundException("User object not found");
 		}
 
-//		if (user == null) {
-//			throw new ObjectNotFoundException("User object not found");
-//		}
-
 		return user;
+	}
+	
+	public User insert (User obj) {
+		return repo.insert(obj);
+	}
+	
+	public User fromDTO(UserDTO objDTO) {
+		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
 	}
 
 }
