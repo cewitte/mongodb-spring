@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.github.cewitte.domain.Post;
 import com.github.cewitte.domain.User;
+import com.github.cewitte.dto.AuthorDTO;
 import com.github.cewitte.repository.PostRepository;
 import com.github.cewitte.repository.UserRepository;
 
@@ -33,11 +34,12 @@ public class Instantiation implements CommandLineRunner {
 		User maria = new User(null, "Maria Brown", "maria@gmail.com");
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
-
-		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Go, go, go", "It will be the time of my life!", maria);
-		Post post2 = new Post(null, sdf.parse("21/03/2018"), "Good morning", "I woke up happy today.", maria);
-
+		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Go, go, go", "It will be the time of my life!", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("21/03/2018"), "Good morning", "I woke up happy today.", new AuthorDTO(maria));
+
 		postRepository.saveAll(Arrays.asList(post1, post2));
 
 	}
