@@ -31,5 +31,10 @@ public class PostService {
 	public List<Post> findByTitle(String text){
 		return repo.findByTitleContainingIgnoreCase(text);
 	}
+	
+	// Alternate method to search by title using @Query with regex.
+	public List<Post> searchTitle(String text){
+		return repo.searchTitle(text);
+	}
 
 }
